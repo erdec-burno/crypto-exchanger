@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "emitDeclarationOnly": false,
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+  },
+  "include": ["utils/**/*.ts"],
+  "exclude": [
+    "dist",
+    "out-tsc",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "eslint.config.mjs"
+  ]
+}

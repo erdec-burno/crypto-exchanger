@@ -2,6 +2,9 @@
   "name": "@crypto-exchanger/dashboard",
   "private": true,
   "type": "module",
+  "nx": {
+    "implicitDependencies": ["shared"]
+  },
   "scripts": {},
   "sideEffects": false,
   "dependencies": {

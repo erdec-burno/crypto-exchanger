@@ -1,10 +1,17 @@
 /// <reference types='vitest' />
+import { resolve } from 'node:path';
+
 import { defineConfig } from 'vite';
 import { reactRouter } from '@react-router/dev/vite';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/dashboard',
+  resolve: {
+    alias: {
+      '@shared/utils': resolve(import.meta.dirname, '../../libs/shared/utils'),
+    },
+  },
   server: {
     port: 4200,
     host: 'localhost',
