@@ -16,6 +16,11 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@crypto-exchanger/source"]
+    "customConditions": ["@crypto-exchanger/source"],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/utils": ["libs/shared/utils/index.ts"],
+      "@shared/utils/*": ["libs/shared/utils/*"]
+    }
   }
 }

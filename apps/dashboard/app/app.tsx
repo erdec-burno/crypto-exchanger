@@ -1,9 +1,9 @@
-import NxWelcome from './nx-welcome';
+import { formatText } from '@shared/utils';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="@crypto-exchanger/dashboard" />
+      {formatText('Welcome to Crypto Exchanger Dashboard!')}
     </div>
   );
 }
