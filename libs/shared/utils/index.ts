@@ -1,1 +1,2 @@
-export * from './formatText';
+export * from './format';
+export * from './format-text';

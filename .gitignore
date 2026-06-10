@@ -50,3 +50,6 @@ test-output
 
 storybook-static
 .nx/polygraph
+
+# local deployment configuration
+deploy/.env

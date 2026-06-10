@@ -4,9 +4,11 @@
     "rootDir": ".",
     "outDir": "dist",
     "emitDeclarationOnly": false,
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
-  "include": ["utils/**/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
   "exclude": [
     "dist",
     "out-tsc",

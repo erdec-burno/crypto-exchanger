@@ -25,8 +25,20 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'type:web',
+              onlyDependOnLibsWithTags: ['type:web', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:admin',
+              onlyDependOnLibsWithTags: ['type:admin', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:shared',
+              onlyDependOnLibsWithTags: ['type:shared'],
+            },
+            {
+              sourceTag: 'scope:telegram',
+              onlyDependOnLibsWithTags: ['scope:telegram', 'type:shared'],
             },
           ],
         },
@@ -44,7 +56,6 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
-    // Override or add rules here
     rules: {},
   },
 ];

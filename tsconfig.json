@@ -4,16 +4,34 @@
   "files": [],
   "references": [
     {
+      "path": "./apps/admin"
+    },
+    {
       "path": "./apps/dashboard-e2e"
     },
     {
       "path": "./apps/dashboard"
     },
     {
-      "path": "./libs/ui-kit"
+      "path": "./apps/web"
     },
     {
       "path": "./libs/shared"
+    },
+    {
+      "path": "./libs/ui-kit"
+    },
+    {
+      "path": "./apps/telegram/webapp-e2e"
+    },
+    {
+      "path": "./apps/telegram/webapp"
+    },
+    {
+      "path": "./apps/telegram/bot-e2e"
+    },
+    {
+      "path": "./apps/telegram/bot"
     }
   ]
 }
