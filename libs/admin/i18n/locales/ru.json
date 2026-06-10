@@ -1,0 +1,23 @@
+{
+  "title": "Администрирование",
+  "sessionRestoreError": "Не удалось восстановить сессию администратора.",
+  "logout": "Выйти",
+  "navigation": {
+    "dashboard": "Панель управления",
+    "orders": "Заявки",
+    "users": "Пользователи",
+    "rates": "Курсы",
+    "kyc": "KYC",
+    "settings": "Настройки",
+    "auditLog": "Журнал аудита"
+  },
+  "login": {
+    "title": "Вход для администратора",
+    "description": "Авторизация восстанавливается через /admin/me с использованием HttpOnly cookie.",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "twoFactorCode": "Код 2FA",
+    "submit": "Войти",
+    "submitting": "Вход..."
+  }
+}

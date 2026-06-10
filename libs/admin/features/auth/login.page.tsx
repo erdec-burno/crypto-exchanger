@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { loginAdmin } from '@shared/api-client';
@@ -9,7 +10,7 @@ import {
   adminLoginSchema,
   type AdminLoginForm,
 } from '@shared/validation';
-import { formatText, getUserSafeErrorMessage } from '@shared/utils';
+import { getUserSafeErrorMessage } from '@shared/utils';
 import { Currency } from '@shared/types';
 
 const currency: Currency = {
@@ -22,6 +23,7 @@ const currency: Currency = {
 export const LoginPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const form = useForm<AdminLoginForm>({
     resolver: zodResolver(adminLoginSchema),
     defaultValues: { email: '', password: '', twoFactorCode: '' },
@@ -37,24 +39,29 @@ export const LoginPage = () => {
   return (
     <Card className="mx-auto max-w-md">
       <h1 className="text-3xl font-black text-slate-950">
-        {formatText('Admin login')}
+        {t('login.title')} | {t('app.name', {ns: 'common'})}
       </h1>
       <p className="mt-2 text-sm text-slate-600">
-        Authentication is restored through /admin/me using HttpOnly cookies.{' '}
-        <strong>{currency.name}</strong>
+        {t('login.description')} <strong>{currency.name}</strong>
       </p>
       <form
         className="mt-6 grid gap-4"
         onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
       >
-        <Field label="Email" error={form.formState.errors.email?.message}>
+        <Field
+          label={t('login.email')}
+          error={form.formState.errors.email?.message}
+        >
           <Input type="email" {...form.register('email')} />
         </Field>
-        <Field label="Password" error={form.formState.errors.password?.message}>
+        <Field
+          label={t('login.password')}
+          error={form.formState.errors.password?.message}
+        >
           <Input type="password" {...form.register('password')} />
         </Field>
         <Field
-          label="2FA code"
+          label={t('login.twoFactorCode')}
           error={form.formState.errors.twoFactorCode?.message}
         >
           <Input {...form.register('twoFactorCode')} />
@@ -65,7 +72,7 @@ export const LoginPage = () => {
           </p>
         ) : null}
         <Button type="submit" disabled={mutation.isPending}>
-          {mutation.isPending ? 'Signing in...' : 'Sign in'}
+          {mutation.isPending ? t('login.submitting') : t('login.submit')}
         </Button>
       </form>
     </Card>

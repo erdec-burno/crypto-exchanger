@@ -1,0 +1,14 @@
+{
+  "app": {
+    "name": "Crypto Exchanger"
+  },
+  "actions": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "continue": "Continue"
+  },
+  "status": {
+    "loading": "Loading...",
+    "error": "Something went wrong"
+  }
+}
