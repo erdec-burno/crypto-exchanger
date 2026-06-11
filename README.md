@@ -206,7 +206,7 @@ apps/web    Public SSR client app
 apps/admin  Private operator SPA
 ```
 
-Runtime API URL is configured through `VITE_API_BASE_URL`; see `.env.example`, `apps/web/.env.example`, and `apps/admin/.env.example`.
+Runtime API URL is configured through `VITE_API_BASE_URL`; see `apps/web/.env.example` and `apps/admin/.env.example`.
 
 Preferred Nx commands when the local Nx project graph is available:
 

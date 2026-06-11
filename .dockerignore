@@ -1,0 +1,13 @@
+node_modules
+.nx
+.git
+.idea
+.vscode
+coverage
+test-output
+storybook-static
+**/dist
+**/build
+**/out-tsc
+*.log
+
