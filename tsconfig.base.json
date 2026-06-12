@@ -5,9 +5,14 @@
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
@@ -16,11 +21,101 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@crypto-exchanger/source"],
+    "customConditions": [
+      "@crypto-exchanger/source"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@shared/utils": ["libs/shared/utils/index.ts"],
-      "@shared/utils/*": ["libs/shared/utils/*"]
+      "@crypto-exchanger/web/features/exchange": [
+        "libs/web/features/exchange/index.ts"
+      ],
+      "@crypto-exchanger/web/features/landing": [
+        "libs/web/features/landing/index.ts"
+      ],
+      "@crypto-exchanger/web/features/legal": [
+        "libs/web/features/legal/index.ts"
+      ],
+      "@crypto-exchanger/web/features/order-status": [
+        "libs/web/features/order-status/index.ts"
+      ],
+      "@crypto-exchanger/web/features/support": [
+        "libs/web/features/support/index.ts"
+      ],
+      "@crypto-exchanger/web/i18n": [
+        "libs/web/i18n/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/audit-log": [
+        "libs/admin/features/audit-log/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/auth": [
+        "libs/admin/features/auth/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/dashboard": [
+        "libs/admin/features/dashboard/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/kyc": [
+        "libs/admin/features/kyc/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/orders": [
+        "libs/admin/features/orders/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/rates": [
+        "libs/admin/features/rates/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/settings": [
+        "libs/admin/features/settings/index.ts"
+      ],
+      "@crypto-exchanger/admin/features/users": [
+        "libs/admin/features/users/index.ts"
+      ],
+      "@crypto-exchanger/admin/i18n": [
+        "libs/admin/i18n/index.ts"
+      ],
+      "@shared/utils": [
+        "libs/shared/utils/index.ts"
+      ],
+      "@shared/utils/*": [
+        "libs/shared/utils/*"
+      ],
+      "@shared/api-client": [
+        "libs/shared/api-client/index.ts"
+      ],
+      "@shared/config": [
+        "libs/shared/config/index.ts"
+      ],
+      "@shared/i18n": [
+        "libs/shared/i18n/index.ts"
+      ],
+      "@shared/i18n/resources": [
+        "libs/shared/i18n/resources.ts"
+      ],
+      "@shared/types": [
+        "libs/shared/types/index.ts"
+      ],
+      "@shared/ui": [
+        "libs/shared/ui/index.ts"
+      ],
+      "@shared/validation": [
+        "libs/shared/validation/index.ts"
+      ],
+      "@shared/ui/*": [
+        "libs/shared/ui/*"
+      ],
+      "@shared/api-client/*": [
+        "libs/shared/api-client/*"
+      ],
+      "@shared/config/*": [
+        "libs/shared/config/*"
+      ],
+      "@shared/i18n/*": [
+        "libs/shared/i18n/*"
+      ],
+      "@shared/types/*": [
+        "libs/shared/types/*"
+      ],
+      "@shared/validation/*": [
+        "libs/shared/validation/*"
+      ]
     }
   }
 }

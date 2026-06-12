@@ -1,0 +1,23 @@
+{
+  "title": "Admin",
+  "sessionRestoreError": "Admin session could not be restored.",
+  "logout": "Logout",
+  "navigation": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "users": "Users",
+    "rates": "Rates",
+    "kyc": "KYC",
+    "settings": "Settings",
+    "auditLog": "Audit log"
+  },
+  "login": {
+    "title": "Admin login",
+    "description": "Authentication is restored through /admin/me using HttpOnly cookies.",
+    "email": "Email",
+    "password": "Password",
+    "twoFactorCode": "2FA code",
+    "submit": "Sign in",
+    "submitting": "Signing in..."
+  }
+}

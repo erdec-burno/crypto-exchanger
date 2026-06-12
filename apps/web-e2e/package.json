@@ -1,0 +1,28 @@
+{
+  "name": "web-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "web"
+    ],
+    "targets": {
+      "test": {
+        "executor": "nx:run-commands",
+        "cache": false,
+        "dependsOn": [
+          {
+            "projects": [
+              "web"
+            ],
+            "target": "dev"
+          }
+        ],
+        "options": {
+          "cwd": "apps/web-e2e",
+          "command": "playwright test --project=chromium"
+        }
+      }
+    }
+  }
+}

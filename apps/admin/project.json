@@ -1,0 +1,19 @@
+{
+  "name": "admin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "root": "apps/admin",
+  "sourceRoot": "apps/admin/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "./node_modules/.bin/vite build -c apps/admin/vite.config.mts"
+      },
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    }
+  },
+  "tags": ["type:admin"]
+}

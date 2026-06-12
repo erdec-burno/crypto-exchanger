@@ -1,0 +1,7 @@
+{
+  "required": "This field is required",
+  "invalidEmail": "Enter a valid email address",
+  "minLength": "Enter at least {{count}} characters",
+  "acceptTerms": "You must accept the terms"
+}
+

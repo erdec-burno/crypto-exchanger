@@ -50,3 +50,9 @@ test-output
 
 storybook-static
 .nx/polygraph
+
+# local environment configuration
+.env
+.env.*
+!.env.example
+!**/.env.example

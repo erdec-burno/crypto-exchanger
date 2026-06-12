@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "outDir": "dist/out-tsc",
+    "tsBuildInfoFile": "dist/out-tsc/tsconfig.app.tsbuildinfo"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/shared/**/*.ts",
+    "../../libs/shared/**/*.tsx",
+    "../../libs/admin/**/*.ts",
+    "../../libs/admin/**/*.tsx",
+    "../../libs/admin/**/*.json"
+  ],
+  "exclude": [
+    "dist",
+    "dist/**",
+    "../../libs/**/dist",
+    "../../libs/**/dist/**",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "references": [
+    {
+      "path": "../../libs/shared/tsconfig.lib.json"
+    }
+  ]
+}

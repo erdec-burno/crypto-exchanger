@@ -1,0 +1,53 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "root": "apps/web",
+  "sourceRoot": "apps/web/src",
+  "targets": {
+    "dev": {
+      "continuous": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node server.mjs",
+        "cwd": "apps/web"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx vite build -c apps/web/vite.config.mts",
+          "npx vite build -c apps/web/vite.config.mts --ssr src/entry-server.tsx --outDir dist/server"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "NODE_ENV=production node server.mjs",
+        "cwd": "apps/web"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsc -p apps/web/tsconfig.app.json --noEmit"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node server.mjs",
+        "cwd": "apps/web"
+      }
+    }
+  },
+  "tags": [
+    "type:web"
+  ]
+}

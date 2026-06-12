@@ -1,0 +1,9 @@
+{
+  "name": "@crypto-exchanger/webapp",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "projectType": "application",
+    "tags": ["scope:telegram"]
+  }
+}
