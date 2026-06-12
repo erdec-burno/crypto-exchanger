@@ -1,0 +1,28 @@
+{
+  "name": "admin-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "admin"
+    ],
+    "targets": {
+      "test": {
+        "executor": "nx:run-commands",
+        "cache": false,
+        "dependsOn": [
+          {
+            "projects": [
+              "admin"
+            ],
+            "target": "dev"
+          }
+        ],
+        "options": {
+          "cwd": "apps/admin-e2e",
+          "command": "playwright test --project=chromium"
+        }
+      }
+    }
+  }
+}
