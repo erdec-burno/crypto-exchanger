@@ -48,7 +48,8 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      }
+      },
+      "exclude": ["apps/dashboard/**/*", "apps/dashboard-e2e/**/*"]
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -62,7 +63,8 @@
         "typecheckTargetName": "typecheck",
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
-      }
+      },
+      "exclude": ["apps/dashboard/**/*"]
     },
     {
       "plugin": "@nx/vitest",
@@ -70,7 +72,8 @@
         "testTargetName": "test",
         "ciTargetName": "test-ci",
         "testMode": "watch"
-      }
+      },
+      "exclude": ["apps/dashboard/**/*"]
     },
     {
       "plugin": "@nx/playwright/plugin",
