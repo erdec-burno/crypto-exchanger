@@ -10,6 +10,7 @@ export default [
       '**/out-tsc',
       '**/build',
       '**/.react-router',
+      '**/storybook-static',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
       '**/test-output',

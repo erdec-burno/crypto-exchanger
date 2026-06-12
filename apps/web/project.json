@@ -6,6 +6,7 @@
   "sourceRoot": "apps/web/src",
   "targets": {
     "dev": {
+      "continuous": true,
       "executor": "nx:run-commands",
       "options": {
         "command": "node server.mjs",
