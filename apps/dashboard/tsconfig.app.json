@@ -23,11 +23,7 @@
     "**/.client/**/*.tsx",
     "../../libs/shared/**/*.ts"
   ],
-  "references": [
-    {
-      "path": "../../libs/shared/tsconfig.lib.json"
-    }
-  ],
+  "references": [],
   "exclude": [
     "out-tsc",
     "dist",
