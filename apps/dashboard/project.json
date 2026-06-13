@@ -1,0 +1,9 @@
+{
+  "name": "@crypto-exchanger/dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "root": "apps/dashboard",
+  "sourceRoot": "apps/dashboard/app",
+  "implicitDependencies": ["shared"],
+  "tags": ["type:dashboard"]
+}
