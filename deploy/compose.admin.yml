@@ -1,0 +1,19 @@
+name: crypto-exchanger-admin
+
+services:
+  admin:
+    image: ${ADMIN_IMAGE:-crypto-exchanger-admin:latest}
+    build:
+      context: ..
+      dockerfile: deploy/docker/admin.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    ports:
+      - "${ADMIN_PORT:-8081}:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

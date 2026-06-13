@@ -133,5 +133,6 @@
         "unitTestRunner": "vitest"
       }
     }
-  }
+  },
+  "nxCloudId": "6a2d5543e9e10ea7217bd513"
 }
