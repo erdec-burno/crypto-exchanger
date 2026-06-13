@@ -149,32 +149,87 @@ You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx 
 
 [Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Set up CI!
+## Nx Cloud
 
-### Step 1
+Nx Cloud provides remote task caching, CI run history, and optional task
+distribution. The connection is identified by the `nxCloudId` property in
+`nx.json`.
 
-To connect to Nx Cloud, run the following command:
+### Connect the repository
+
+1. Sign in to [Nx Cloud](https://cloud.nx.app/) and install the Nx Cloud GitHub
+   App for the repository.
+2. From the repository root, run:
+
+   ```sh
+   npm exec nx -- connect
+   ```
+
+3. Open the URL printed by the command and finish linking the workspace to the
+   correct Nx Cloud organization.
+4. Commit the generated `nxCloudId` in `nx.json` and merge it into the default
+   branch:
+
+   ```sh
+   git add nx.json
+   git commit -m "chore: connect Nx Cloud"
+   git push
+   ```
+
+If the GitHub onboarding page cannot create its pull request, generate the
+configuration locally:
 
 ```sh
-npx nx connect
+npm exec nx -- connect --generateToken
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+If Nx reports `Existing Nx Cloud configuration found`, inspect the existing
+`nxCloudId` before continuing. Replacing it creates or selects a different Nx
+Cloud workspace and disconnects the repository from the previous one.
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Verify remote caching
 
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
+Run a cacheable target:
 
 ```sh
-npx nx g ci-workflow
+npm exec nx -- run ui-kit:test -- --run
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Clear only the local Nx cache and run the same target again:
+
+```sh
+npm exec nx -- reset
+npm exec nx -- run ui-kit:test -- --run
+```
+
+The second run should contain `[remote cache]` and a link to the run in Nx
+Cloud. CI tasks executed through Nx use the same remote cache. Nx Agents and
+distributed task execution are optional and should only be enabled after the
+normal CI workflow is stable.
+
+### Important: transferring or copying the repository
+
+> Before transferring this repository to another owner or organization,
+> creating an independent fork, or using it as a template, you must replace or
+> remove `nxCloudId` from `nx.json`.
+
+Keeping the existing value connects the copied or transferred repository to
+the original Nx Cloud workspace. This can reuse its cache and publish task or
+CI metadata under the wrong organization.
+
+Choose one of these approaches before the repository is used in its new
+location:
+
+- Remove `nxCloudId`, commit the change, and run `npm exec nx -- connect` after
+  the transfer to create a new connection.
+- Create/select the destination Nx Cloud workspace and replace `nxCloudId` with
+  its ID before running CI in the new repository.
+
+Never run CI for an independent copy while it still contains the source
+repository's `nxCloudId`.
+
+[Learn more about Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud) and
+[remote caching](https://nx.dev/ci/features/remote-cache).
 
 ## Install Nx Console
 
