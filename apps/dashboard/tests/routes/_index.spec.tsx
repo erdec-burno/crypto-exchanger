@@ -1,16 +1,22 @@
 import { createRoutesStub } from 'react-router';
-import { render, screen, waitFor } from '@testing-library/react';
-import App from '../../app/app';
+import { render, screen } from '@testing-library/react';
 
-test('renders loader data', async () => {
+import { LoginPage } from '../../app/routes/public/login';
+
+test('renders demo sign-in credentials', async () => {
   const ReactRouterStub = createRoutesStub([
     {
-      path: '/',
-      Component: App,
+      path: '/login',
+      Component: LoginPage,
+      loader: () => ({ redirectTo: '/dashboard' }),
     },
   ]);
 
-  render(<ReactRouterStub />);
+  render(<ReactRouterStub initialEntries={['/login']} />);
 
-  await waitFor(() => screen.findByText('Hello there,'));
+  expect(
+    await screen.findByRole('heading', { name: 'Sign in to your dashboard' }),
+  ).toBeTruthy();
+  expect(screen.getByDisplayValue('admin@example.com')).toBeTruthy();
+  expect(screen.getByDisplayValue('demo1234')).toBeTruthy();
 });

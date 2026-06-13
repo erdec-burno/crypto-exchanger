@@ -48,8 +48,7 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      },
-      "exclude": ["apps/dashboard/**/*", "apps/dashboard-e2e/**/*"]
+      }
     },
     {
       "plugin": "@nx/vite/plugin",
