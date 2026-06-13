@@ -3,16 +3,20 @@
   "private": true,
   "type": "module",
   "nx": {
-    "implicitDependencies": ["shared"]
+    "implicitDependencies": [
+      "shared"
+    ]
   },
   "scripts": {},
   "sideEffects": false,
   "dependencies": {
     "@react-router/node": "^7.14.2",
     "@react-router/serve": "^7.14.2",
+    "i18next": "^26.3.1",
     "isbot": "^4.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-i18next": "^17.0.8",
     "react-router": "^7.14.2"
   },
   "devDependencies": {

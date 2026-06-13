@@ -4,6 +4,7 @@ import {
   useLoaderData,
   type LoaderFunctionArgs,
 } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import { getUser } from '../.server/auth';
 import type { DemoUser } from '../auth-config';
@@ -26,6 +27,7 @@ const getLinkClassName = ({ isActive }: { isActive: boolean }) =>
 
 export const PublicLayout = () => {
   const { user } = useLoaderData<typeof loader>();
+  const { t } = useTranslation('common');
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
@@ -35,7 +37,7 @@ export const PublicLayout = () => {
             className="text-lg font-black tracking-tight text-slate-950"
             to="/"
           >
-            Crypto Exchange
+            {t('app.name')}
           </NavLink>
           <nav
             aria-label="Public navigation"

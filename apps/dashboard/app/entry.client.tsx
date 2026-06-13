@@ -7,12 +7,19 @@
 import { HydratedRouter } from 'react-router/dom';
 import { startTransition, StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
+import { I18nextProvider } from 'react-i18next';
+
+import { createDashboardClientI18n } from './.client/dashboard-i18n';
+
+const i18n = await createDashboardClientI18n();
 
 startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <HydratedRouter />
+      <I18nextProvider i18n={i18n}>
+        <HydratedRouter />
+      </I18nextProvider>
     </StrictMode>,
   );
 });
