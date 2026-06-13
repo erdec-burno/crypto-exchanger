@@ -1,0 +1,45 @@
+name: ${WEB_EXCHANGER}
+
+services:
+  web:
+    image: ${WEB_IMAGE:-web:latest}
+    build:
+      context: ..
+      dockerfile: deploy/docker/web.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+        VITE_ADMIN_APP_URL: ${VITE_ADMIN_APP_URL}
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/').then((response) => { if (!response.ok) process.exit(1); }).catch(() => process.exit(1));",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  admin:
+    image: ${ADMIN_IMAGE:-admin:latest}
+    build:
+      context: ..
+      dockerfile: deploy/docker/admin.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    ports:
+      - "${ADMIN_PORT:-8081}:80"
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
