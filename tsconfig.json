@@ -38,6 +38,12 @@
     },
     {
       "path": "./apps/telegram/bot"
+    },
+    {
+      "path": "./apps/bff-e2e"
+    },
+    {
+      "path": "./apps/bff"
     }
   ]
 }

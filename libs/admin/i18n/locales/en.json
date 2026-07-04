@@ -1,6 +1,12 @@
 {
   "title": "Admin",
   "sessionRestoreError": "Admin session could not be restored.",
+  "sessionExpiry": {
+    "title": "Session expires soon",
+    "description": "Finish your current action or continue the session.",
+    "continue": "Continue session",
+    "continuing": "Continuing..."
+  },
   "logout": "Logout",
   "navigation": {
     "dashboard": "Dashboard",

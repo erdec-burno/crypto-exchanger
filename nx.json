@@ -108,7 +108,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/telegram/bot-e2e/**/*"]
+      "exclude": ["apps/telegram/bot-e2e/**/*", "apps/bff-e2e/**/*"]
     }
   ],
   "targetDefaults": {

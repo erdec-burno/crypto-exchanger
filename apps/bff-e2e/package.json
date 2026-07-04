@@ -1,0 +1,26 @@
+{
+  "name": "@crypto-exchanger/bff-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@crypto-exchanger/bff"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/bff-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@crypto-exchanger/bff:build",
+          "@crypto-exchanger/bff:serve"
+        ]
+      }
+    }
+  }
+}

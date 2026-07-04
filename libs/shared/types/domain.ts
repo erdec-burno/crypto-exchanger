@@ -56,6 +56,17 @@ export type AdminUser = {
   email: string;
   displayName: string;
   roles: string[];
+  sessionExpiresAt: string;
+  sessionExpiryWarningSeconds: number;
+};
+
+export type AdminSettings = {
+  exchangeEnabled: boolean;
+  maintenanceMode: boolean;
+  defaultFiatCurrency: string;
+  supportEmail: string;
+  sessionTtlSeconds: number;
+  sessionExpiryWarningSeconds: number;
 };
 
 export type CustomerUser = {
