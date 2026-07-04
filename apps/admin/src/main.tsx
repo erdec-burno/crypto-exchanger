@@ -1,11 +1,26 @@
-import { QueryClient, QueryClientProvider, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useNavigate } from 'react-router';
 
-import { getCurrentAdminUser, logoutAdmin } from '@shared/api-client';
-import { Button, ErrorState, Spinner } from '@shared/ui';
+import {
+  getCurrentAdminUser,
+  logoutAdmin,
+  refreshAdminSession,
+} from '@shared/api-client';
+import {
+  Button,
+  ErrorState,
+  SessionExpiryWarningModal,
+  Spinner,
+} from '@shared/ui';
 import { LoginPage } from '@crypto-exchanger/admin/features/auth';
 import { AuditLogPage } from '@crypto-exchanger/admin/features/audit-log';
 import { DashboardPage } from '@crypto-exchanger/admin/features/dashboard';
@@ -34,6 +49,16 @@ const ProtectedLayout = () => {
   const client = useQueryClient();
   const { t } = useTranslation('admin');
   const meQuery = useQuery({ queryKey: ['admin-me'], queryFn: getCurrentAdminUser });
+  const refreshSessionMutation = useMutation({
+    mutationFn: refreshAdminSession,
+    onError: () => {
+      client.clear();
+      navigate('/login');
+    },
+    onSuccess: (user) => {
+      client.setQueryData(['admin-me'], user);
+    },
+  });
 
   if (meQuery.isLoading) return <PageShell><Spinner /></PageShell>;
   if (meQuery.isError) return <Navigate to="/login" replace />;
@@ -61,6 +86,19 @@ const ProtectedLayout = () => {
         </aside>
         <section><Outlet /></section>
       </div>
+      <SessionExpiryWarningModal
+        continueDisabled={refreshSessionMutation.isPending}
+        continueLabel={
+          refreshSessionMutation.isPending
+            ? t('sessionExpiry.continuing')
+            : t('sessionExpiry.continue')
+        }
+        description={t('sessionExpiry.description')}
+        expiresAt={meQuery.data.sessionExpiresAt}
+        onContinue={() => refreshSessionMutation.mutate()}
+        title={t('sessionExpiry.title')}
+        warningThresholdSeconds={meQuery.data.sessionExpiryWarningSeconds}
+      />
     </PageShell>
   );
 };

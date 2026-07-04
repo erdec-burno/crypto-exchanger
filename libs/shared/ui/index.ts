@@ -5,3 +5,4 @@ export * from './cn';
 export * from './data-state';
 export * from './input';
 export * from './navigation-menu';
+export * from './session-expiry-warning-modal';
