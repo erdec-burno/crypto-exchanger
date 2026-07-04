@@ -12,6 +12,7 @@ async function bootstrap() {
   app.enableCors({
     origin: process.env.ADMIN_APP_ORIGIN ?? 'http://localhost:4201',
     credentials: true,
+    allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
   });
 
   const port = process.env.PORT || 3000;

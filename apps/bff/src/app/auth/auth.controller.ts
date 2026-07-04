@@ -6,18 +6,34 @@ import {
   Headers,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import type { Response } from 'express';
 
 import { AuthService } from './auth.service';
 import type { LoginRequest } from './auth.types';
 import { SESSION_COOKIE_NAME } from './auth.guard';
+import { CSRF_COOKIE_NAME, CsrfGuard } from './csrf.guard';
+import { CsrfService } from './csrf.service';
 
 @Controller('admin')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly csrfService: CsrfService,
+  ) {}
+
+  @Get('csrf-token')
+  createCsrfToken(@Res({ passthrough: true }) response: Response) {
+    const { token, signedToken } = this.csrfService.createToken();
+
+    this.setCsrfCookie(response, signedToken);
+
+    return { csrfToken: token };
+  }
 
   @Post('login')
+  @UseGuards(CsrfGuard)
   login(
     @Body() body: unknown,
     @Res({ passthrough: true }) response: Response,
@@ -38,6 +54,7 @@ export class AuthController {
   }
 
   @Post('session/refresh')
+  @UseGuards(CsrfGuard)
   refreshSession(
     @Headers('cookie') cookieHeader: string | undefined,
     @Res({ passthrough: true }) response: Response,
@@ -52,6 +69,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @UseGuards(CsrfGuard)
   logout(@Res({ passthrough: true }) response: Response) {
     this.clearSessionCookie(response);
   }
@@ -100,6 +118,15 @@ export class AuthController {
 
   private clearSessionCookie(response: Response): void {
     response.clearCookie(SESSION_COOKIE_NAME, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+    });
+  }
+
+  private setCsrfCookie(response: Response, signedToken: string): void {
+    response.cookie(CSRF_COOKIE_NAME, signedToken, {
       httpOnly: true,
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',

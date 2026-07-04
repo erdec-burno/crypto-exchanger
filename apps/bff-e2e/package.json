@@ -17,8 +17,7 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@crypto-exchanger/bff:build",
-          "@crypto-exchanger/bff:serve"
+          "@crypto-exchanger/bff:build"
         ]
       }
     }

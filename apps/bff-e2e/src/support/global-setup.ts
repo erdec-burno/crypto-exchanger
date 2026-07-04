@@ -1,4 +1,6 @@
 import { waitForPortOpen } from '@nx/node/utils';
+import { spawn } from 'node:child_process';
+import { resolve } from 'node:path';
 
 /* eslint-disable */
 var __TEARDOWN_MESSAGE__: string;
@@ -9,6 +11,19 @@ module.exports = async function () {
 
   const host = process.env.HOST ?? 'localhost';
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+  const workspaceRoot = resolve(__dirname, '../../../..');
+  const serverProcess = spawn('node', ['apps/bff/dist/main.js'], {
+    cwd: workspaceRoot,
+    detached: true,
+    env: {
+      ...process.env,
+      HOST: host,
+      PORT: String(port),
+    },
+    stdio: 'ignore',
+  });
+
+  serverProcess.unref();
   await waitForPortOpen(port, { host });
 
   // Hint: Use `globalThis` to pass variables to global teardown.
