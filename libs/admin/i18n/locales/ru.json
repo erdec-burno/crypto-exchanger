@@ -10,12 +10,7 @@
   "logout": "Выйти",
   "navigation": {
     "dashboard": "Панель управления",
-    "orders": "Заявки",
-    "users": "Пользователи",
-    "rates": "Курсы",
-    "kyc": "KYC",
-    "settings": "Настройки",
-    "auditLog": "Журнал аудита"
+    "settings": "Настройки"
   },
   "login": {
     "title": "Вход для администратора",

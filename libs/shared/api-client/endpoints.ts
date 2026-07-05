@@ -1,10 +1,9 @@
 import type {
-  AdminSettings,
-  AdminUser,
+  Settings,
+  User,
   ExchangeOrder,
   ExchangePair,
   ExchangeQuote,
-  PaginatedResponse,
 } from '../types';
 
 import { httpClient } from './http-client';
@@ -43,26 +42,22 @@ export function getPublicOrder(orderId: string): Promise<ExchangeOrder> {
   return httpClient.get<ExchangeOrder>(`/public/orders/${encodeURIComponent(orderId)}`);
 }
 
-export function getCurrentAdminUser(): Promise<AdminUser> {
-  return httpClient.get<AdminUser>('/admin/me');
+export function getCurrentAdminUser(): Promise<User> {
+  return httpClient.get<User>('/admin/me');
 }
 
-export function loginAdmin(input: AdminLoginRequest): Promise<AdminUser> {
-  return httpClient.post<AdminUser>('/admin/login', input);
+export function loginAdmin(input: AdminLoginRequest): Promise<User> {
+  return httpClient.post<User>('/admin/login', input);
 }
 
-export function refreshAdminSession(): Promise<AdminUser> {
-  return httpClient.post<AdminUser>('/admin/session/refresh');
+export function refreshAdminSession(): Promise<User> {
+  return httpClient.post<User>('/admin/session/refresh');
 }
 
 export function logoutAdmin(): Promise<void> {
   return httpClient.post<void>('/admin/logout');
 }
 
-export function getAdminSettings(): Promise<AdminSettings> {
-  return httpClient.get<AdminSettings>('/admin/settings');
-}
-
-export function getAdminOrders(): Promise<PaginatedResponse<ExchangeOrder>> {
-  return httpClient.get<PaginatedResponse<ExchangeOrder>>('/admin/orders');
+export function getAdminSettings(): Promise<Settings> {
+  return httpClient.get<Settings>('/admin/settings');
 }

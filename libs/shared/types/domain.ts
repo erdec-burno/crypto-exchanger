@@ -51,7 +51,7 @@ export type ExchangeOrder = {
   createdAt: string;
 };
 
-export type AdminUser = {
+export type User = {
   id: string;
   email: string;
   displayName: string;
@@ -60,7 +60,7 @@ export type AdminUser = {
   sessionExpiryWarningSeconds: number;
 };
 
-export type AdminSettings = {
+export type Settings = {
   exchangeEnabled: boolean;
   maintenanceMode: boolean;
   defaultFiatCurrency: string;
