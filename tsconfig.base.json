@@ -44,29 +44,14 @@
       "@crypto-exchanger/web/i18n": [
         "libs/web/i18n/index.ts"
       ],
-      "@crypto-exchanger/admin/features/audit-log": [
-        "libs/admin/features/audit-log/index.ts"
-      ],
       "@crypto-exchanger/admin/features/auth": [
         "libs/admin/features/auth/index.ts"
       ],
       "@crypto-exchanger/admin/features/dashboard": [
         "libs/admin/features/dashboard/index.ts"
       ],
-      "@crypto-exchanger/admin/features/kyc": [
-        "libs/admin/features/kyc/index.ts"
-      ],
-      "@crypto-exchanger/admin/features/orders": [
-        "libs/admin/features/orders/index.ts"
-      ],
-      "@crypto-exchanger/admin/features/rates": [
-        "libs/admin/features/rates/index.ts"
-      ],
       "@crypto-exchanger/admin/features/settings": [
         "libs/admin/features/settings/index.ts"
-      ],
-      "@crypto-exchanger/admin/features/users": [
-        "libs/admin/features/users/index.ts"
       ],
       "@crypto-exchanger/admin/i18n": [
         "libs/admin/i18n/index.ts"
