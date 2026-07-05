@@ -91,28 +91,31 @@ export const PrivateSidebar = ({ user, onLogout }: PrivateSidebarProps) => {
         </span>
       </NavLink>
 
-      <nav
-        aria-label={t('title')}
-        className="mt-8 space-y-2"
-      >
-        {privateNavigationItems.map(({ path, translationKey, icon }) => (
-          <NavLink
-            key={path}
-            className={getNavigationClassName}
-            to={`/${path}`}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <span
-              aria-hidden="true"
-              className="grid size-6 shrink-0 place-items-center rounded-md bg-current/10 text-xs"
+      <nav aria-label={t('title')} className="mt-8 space-y-2">
+        {privateNavigationItems.map((item) => {
+          const icon = 'icon' in item ? item.icon : undefined;
+
+          return (
+            <NavLink
+              key={item.path}
+              className={getNavigationClassName}
+              to={`/${item.path}`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              {icon}
-            </span>
-            <span className={isMobileMenuOpen ? 'block' : 'hidden lg:block'}>
-              {t(translationKey)}
-            </span>
-          </NavLink>
-        ))}
+              {icon && (
+                <span
+                  aria-hidden="true"
+                  className="grid size-6 shrink-0 place-items-center rounded-md bg-current/10 text-xs"
+                >
+                  {icon}
+                </span>
+              )}
+              <span className={isMobileMenuOpen ? 'block' : 'hidden lg:block'}>
+                {t(item.translationKey)}
+              </span>
+            </NavLink>
+          );
+        })}
       </nav>
 
       <div

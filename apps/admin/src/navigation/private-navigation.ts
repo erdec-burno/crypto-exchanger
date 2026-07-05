@@ -1,4 +1,6 @@
-export const privateNavigationItems = [
-  { path: 'dashboard', translationKey: 'navigation.dashboard', icon: 'D' },
-  { path: 'settings', translationKey: 'navigation.settings', icon: 'S' },
-] as const;
+import type { NavigationItem } from '@shared/types';
+
+export const privateNavigationItems: readonly NavigationItem[] = [
+  { path: 'dashboard', translationKey: 'navigation.dashboard' },
+  { path: 'settings', translationKey: 'navigation.settings' },
+];
